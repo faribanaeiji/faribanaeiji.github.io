@@ -5,7 +5,7 @@
 
 ###### Fariba Naeiji
 ## Generative AI & NLP Developer
-📍 Montreal, Canada •
+📍 Montreal, Canada • [LinkedIn](https://www.linkedin.com/in/fariba-naeiji/)
 
 ## Professional Summary
 Generative AI & NLP Developer with 5+ years of experience designing and deploying
