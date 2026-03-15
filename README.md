@@ -1,6 +1,6 @@
 # faribanaeiji.github.io
 
-[My Projects](index.html)
+[My Projects](https://faribanaeiji.github.io/index.html)
 
 
 ###### Fariba Naeiji
