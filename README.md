@@ -1,6 +1,6 @@
 # faribanaeiji.github.io
 
-
+[My Projects](inex.html)
 
 
 ###### Fariba Naeiji
