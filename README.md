@@ -5,7 +5,7 @@
 
 ###### Fariba Naeiji
 ## Generative AI & NLP Developer
-📍 Montreal, Canada • 📞 +1 (438) 223-0426 • 📧 Fariba.Naeiji@gmail.com 
+📍 Montreal, Canada •
 
 ## Professional Summary
 Generative AI & NLP Developer with 5+ years of experience designing and deploying
