@@ -54,11 +54,11 @@ Platform(basics)
 - Programming: Python (Expert), SQL (Intermediate), REST APIs, JSON
 - Other Tools: VLLM, Ollama, Sphinx, Postman
 - Visualisation & reporting: Matplotlib, Pandas
-Certifications & Publications
+## Certifications & Publications
 - Certifications: Agentic AI, Advanced Python Programming, NLP, Machine Learning
 - Publication: “TookaBERT: A Step Forward for Persian NLU” (Arxiv, 2024)
 - Hackathons: Google GenAI, MEXA Hackathon
-Languages
+## Languages
 - Persian: Native
 - English: Fluent
 - French: Intermediate
