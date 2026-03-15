@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f7f6f3;
+    --surface: #ffffff;
+    --ink: #141413;
+    --ink-2: #6b6a67;
+    --ink-3: #a8a7a4;
+    --accent: #1a1a1a;
+    --accent-line: #d4d2cc;
+    --tag-bg: #eeecea;
+    --tag-text: #4a4947;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 4rem;
+    background: rgba(247,246,243,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--accent-line);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-2);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* SECTIONS */
+  section { padding: 7rem 4rem; max-width: 1100px; margin: 0 auto; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding-top: 8rem;
+    max-width: 1100px; margin: 0 auto;
+    padding-left: 4rem; padding-right: 4rem;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.1s;
+  }
+  h1 {
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.25s;
+  }
+  h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink-2);
+  }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--ink-2);
+    font-weight: 300;
+    max-width: 520px;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.4s;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; align-items: center;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.55s;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+  .btn-primary:hover { background: #333; border-color: #333; }
+  .btn-outline {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--accent-line);
+  }
+  .btn-outline:hover { border-color: var(--ink); }
+
+  .hero-scroll {
+    margin-top: 6rem;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    letter-spacing: 0.08em;
+    display: flex; align-items: center; gap: 12px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.7s;
+  }
+  .scroll-line {
+    width: 40px; height: 1px;
+    background: var(--ink-3);
+    display: inline-block;
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    display: flex; align-items: baseline; gap: 1.5rem;
+    margin-bottom: 4rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--accent-line);
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    letter-spacing: 0.1em;
+  }
+  h2 {
+    font-size: 1.9rem;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--ink-2);
+    font-weight: 300;
+    margin-bottom: 1.25rem;
+    font-size: 1.05rem;
+  }
+  .about-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  }
+  .stat-card {
+    padding: 1.5rem;
+    border: 1px solid var(--accent-line);
+    background: var(--surface);
+  }
+  .stat-num {
+    font-size: 2.2rem;
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .stat-desc {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* PROJECTS */
+  .projects-list { display: flex; flex-direction: column; gap: 0; }
+  .project-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--accent-line);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s;
+    cursor: pointer;
+  }
+  .project-item:first-child { border-top: 1px solid var(--accent-line); }
+  .project-item:hover .project-title { color: var(--ink-2); }
+  .project-item:hover .project-arrow { transform: translate(4px, -4px); }
+  .project-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    letter-spacing: 0.06em;
+  }
+  .project-title {
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.4rem;
+    transition: color 0.2s;
+  }
+  .project-desc {
+    font-size: 0.9rem;
+    color: var(--ink-2);
+    font-weight: 300;
+    margin-bottom: 0.75rem;
+  }
+  .project-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    padding: 3px 9px;
+    border-radius: 2px;
+  }
+  .project-arrow {
+    font-size: 1.2rem;
+    color: var(--ink-3);
+    transition: transform 0.2s;
+    line-height: 1;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .skill-group {
+    padding: 1.75rem;
+    background: var(--surface);
+    border: 1px solid var(--accent-line);
+  }
+  .skill-group-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 1rem;
+  }
+  .skill-list { list-style: none; }
+  .skill-list li {
+    font-size: 0.95rem;
+    color: var(--ink-2);
+    font-weight: 300;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid var(--tag-bg);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .skill-list li:last-child { border-bottom: none; }
+  .skill-list li::before {
+    content: '';
+    width: 4px; height: 4px;
+    background: var(--ink-3);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* CONTACT */
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .contact-text {
+    font-size: 1.05rem;
+    color: var(--ink-2);
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+  .contact-links { display: flex; flex-direction: column; gap: 0; }
+  .contact-link {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--accent-line);
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 300;
+    transition: color 0.2s;
+  }
+  .contact-link:first-child { border-top: 1px solid var(--accent-line); }
+  .contact-link:hover { color: var(--ink-2); }
+  .contact-link-label { font-size: 1rem; }
+  .contact-link-handle {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-3);
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  input, textarea {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--accent-line);
+    padding: 0.75rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+    width: 100%;
+  }
+  input:focus, textarea:focus { border-color: var(--ink); }
+  textarea { min-height: 120px; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--accent-line);
+    padding: 2rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .footer-text {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    letter-spacing: 0.06em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section, #hero { padding-left: 1.5rem; padding-right: 1.5rem; }
+    footer { padding: 2rem 1.5rem; }
+    .about-grid, .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .project-item { grid-template-columns: 60px 1fr; }
+    .project-arrow { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">FN — dev</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <p class="hero-eyebrow">Fariba Naeiji — Software Engineer · Montreal, QC</p>
+  <h1>Building things<br>for <em>the web</em></h1>
+  <p class="hero-sub">I design and build clean, performant software — from backend systems to interfaces people actually enjoy using.</p>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">View my work</a>
+    <a href="#contact" class="btn btn-outline">Get in touch</a>
+  </div>
+  <div class="hero-scroll">
+    <span class="scroll-line"></span>
+    scroll to explore
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header fade-up">
+    <span class="section-num">01</span>
+    <h2>About me</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text fade-up">
+      <p>I'm a software engineer with a focus on building reliable, scalable systems and the user-facing products that sit on top of them. I care about the craft — clean code, thoughtful architecture, and details that matter.</p>
+      <p>Currently open to new opportunities. I thrive in small teams where I can ship end-to-end and wear multiple hats.</p>
+      <p>When I'm not coding, I'm probably reading, hiking, or tinkering with side projects that may or may not ever see the light of day.</p>
+    </div>
+    <div class="about-stats fade-up">
+      <div class="stat-card">
+        <span class="stat-num">5+</span>
+        <span class="stat-desc">Years experience</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">30+</span>
+        <span class="stat-desc">Projects shipped</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">12</span>
+        <span class="stat-desc">Open source repos</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">∞</span>
+        <span class="stat-desc">Coffees consumed</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header fade-up">
+    <span class="section-num">02</span>
+    <h2>Selected work</h2>
+  </div>
+  <div class="projects-list">
+
+    <a class="project-item fade-up" href="https://github.com/faribanaeiji/translation_QA" target="_blank" rel="noopener">
+      <span class="project-num">001</span>
+      <div>
+        <div class="project-title">Translation QA — LLM as a Judge</div>
+        <div class="project-desc">A reference-free translation evaluation system using LLMs to automatically score English→Russian translations — removing the need for expensive human annotators.</div>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Flask</span>
+          <span class="tag">Docker</span>
+          <span class="tag">LLM</span>
+          <span class="tag">NLP</span>
+        </div>
+        <div style="margin-top: 0.6rem;">
+          <a href="https://medium.com/@fariba.naeiji/building-a-reference-free-translation-qa-system-70a55731ebb8" target="_blank" rel="noopener" style="font-family: var(--mono); font-size: 11px; color: var(--ink-3); text-decoration: none; letter-spacing: 0.04em; border-bottom: 1px solid var(--accent-line);" onclick="event.stopPropagation()">Read on Medium ↗</a>
+        </div>
+      </div>
+      <span class="project-arrow">↗</span>
+    </a>
+
+    <div class="project-item fade-up">
+      <span class="project-num">002</span>
+      <div>
+        <div class="project-title">Harbour — Dev Tooling CLI</div>
+        <div class="project-desc">A CLI tool that automates local environment setup and container orchestration for dev teams.</div>
+        <div class="project-tags">
+          <span class="tag">Rust</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Shell</span>
+        </div>
+      </div>
+      <span class="project-arrow">↗</span>
+    </div>
+
+    <div class="project-item fade-up">
+      <span class="project-num">003</span>
+      <div>
+        <div class="project-title">Meridian — API Gateway</div>
+        <div class="project-desc">A lightweight, configurable API gateway with built-in rate limiting, caching, and auth middleware.</div>
+        <div class="project-tags">
+          <span class="tag">Node.js</span>
+          <span class="tag">Redis</span>
+          <span class="tag">TypeScript</span>
+        </div>
+      </div>
+      <span class="project-arrow">↗</span>
+    </div>
+
+    <div class="project-item fade-up">
+      <span class="project-num">004</span>
+      <div>
+        <div class="project-title">Clearform — Design System</div>
+        <div class="project-desc">A component library and design token system used across three products at a previous company.</div>
+        <div class="project-tags">
+          <span class="tag">React</span>
+          <span class="tag">Storybook</span>
+          <span class="tag">CSS</span>
+          <span class="tag">Figma</span>
+        </div>
+      </div>
+      <span class="project-arrow">↗</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header fade-up">
+    <span class="section-num">03</span>
+    <h2>Skills</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-group fade-up">
+      <div class="skill-group-title">Languages</div>
+      <ul class="skill-list">
+        <li>TypeScript / JavaScript</li>
+        <li>Python</li>
+        <li>Go</li>
+        <li>Rust</li>
+        <li>SQL</li>
+      </ul>
+    </div>
+    <div class="skill-group fade-up">
+      <div class="skill-group-title">Frontend</div>
+      <ul class="skill-list">
+        <li>React / Next.js</li>
+        <li>CSS / Tailwind</li>
+        <li>Accessibility (WCAG)</li>
+        <li>Web performance</li>
+        <li>Testing (Vitest, Playwright)</li>
+      </ul>
+    </div>
+    <div class="skill-group fade-up">
+      <div class="skill-group-title">Backend & Infra</div>
+      <ul class="skill-list">
+        <li>Node.js / Express</li>
+        <li>PostgreSQL / Redis</li>
+        <li>Docker / Kubernetes</li>
+        <li>AWS / GCP</li>
+        <li>CI/CD pipelines</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header fade-up">
+    <span class="section-num">04</span>
+    <h2>Contact</h2>
+  </div>
+  <div class="contact-inner">
+    <div class="fade-up">
+      <p class="contact-text">Open to new roles, freelance projects, and interesting conversations. Don't hesitate to reach out.</p>
+      <div class="contact-links">
+        <a href="/cdn-cgi/l/email-protection#89e1ece5e5e6c9f0e6fcfbe7e8e4eca7edecff" class="contact-link">
+          <span class="contact-link-label">Email</span>
+          <span class="contact-link-handle"><span class="__cf_email__" data-cfemail="432b262f2f2c033a2c36312d222e266d272635">[email&#160;protected]</span></span>
+        </a>
+        <a href="https://github.com/faribanaeiji" target="_blank" class="contact-link">
+          <span class="contact-link-label">GitHub</span>
+          <span class="contact-link-handle">@faribanaeiji</span>
+        </a>
+        <a href="https://linkedin.com" target="_blank" class="contact-link">
+          <span class="contact-link-label">LinkedIn</span>
+          <span class="contact-link-handle">/in/yourname</span>
+        </a>
+        <a href="#" class="contact-link">
+          <span class="contact-link-label">Resume</span>
+          <span class="contact-link-handle">Download PDF →</span>
+        </a>
+      </div>
+    </div>
+    <form class="contact-form fade-up" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Your name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="your@email.com" required>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="What's on your mind?" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="align-self: flex-start;">Send message</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-text">© 2026 Fariba Naeiji</span>
+  <span class="footer-text">Designed & built with care</span>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Intersection observer for fade-up
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach((el, i) => {
+    el.style.transitionDelay = (i % 4) * 0.08 + 's';
+    observer.observe(el);
+  });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    co
