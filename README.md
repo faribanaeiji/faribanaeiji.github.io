@@ -1,0 +1,1 @@
+# faribanaeiji.github.io
